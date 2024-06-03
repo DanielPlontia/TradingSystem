@@ -21,6 +21,8 @@ TEST_F(StockBrockerTest, LoginSucess) {
 	int id = 1234;
 	int pass = 0000;
 
+	//kiwi id==pass 일때 로그인 가능
+	//nemo id > pass 일떄 로그인 가능
 	EXPECT_CALL(mock, login)
 		.WillRepeatedly(Return(true));
 
