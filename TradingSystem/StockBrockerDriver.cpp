@@ -41,17 +41,31 @@ class NemoStockDriver : public  StockDriver{
 	}
 };
 
-class StockBrockerDriver {
+class StockBrockerDriver : public StockDriver{
 private:
 	StockDriver* userStock;
 
 public:
 
-	StockDriver* selectStockBrocker(string stock)
+	void selectStockBrocker(string stock)
 	{
-		if (stock == "Kiwer") return new KiwerStockDriver();
-		if (stock == "Nemo") return new NemoStockDriver();
-		else return nullptr;
+		if (stock == "Kiwer") userStock = new KiwerStockDriver();
+		if (stock == "Nemo") userStock = new NemoStockDriver();
+		else userStock = nullptr;
 	}
 
+	bool login(int id, int pass) override
+	{
+		return false;
+	}
+	void buy(int code, int price, int count) override
+	{
+	}
+	void sell(int code, int price, int count) override
+	{
+	}
+	int getPrice(int code, time_t time) override
+	{
+		return 0;
+	}
 };
