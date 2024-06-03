@@ -6,6 +6,7 @@ class StockBrockerDriver {
 private:
 	StockDriver* userStock;
 
+
 public:
 	StockBrockerDriver(StockDriver *stockDriver):
 	userStock(stockDriver){
@@ -17,9 +18,6 @@ public:
 		userStock->sell(code, price, count);
 		int selledprice = userStock->getPrice(code, now);
 		if (price != selledprice)
-			throw std::logic_error("ÁÖ½ÄÀÌ Á¤»óÀûÀ¸·Î ÆÈ¸®Áö ¾Ê¾Ò½À´Ï´Ù.");
+			throw std::logic_error("ï¿½Ö½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È¸ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 	}
-
-
-
 };
