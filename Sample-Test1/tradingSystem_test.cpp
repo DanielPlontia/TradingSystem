@@ -7,8 +7,8 @@ using namespace testing;
 class StockMock : public StockDriver {
 public:
 	MOCK_METHOD(bool, login, (int id, int pass), (override));
-	MOCK_METHOD(void, buy, (int code, int price, int count), (override));
-	MOCK_METHOD(void, sell, (int code, int price, int count), (override));
+	MOCK_METHOD(void, buy, (int code, int totalPrice, int count), (override));
+	MOCK_METHOD(void, sell, (int code, int totalPrice, int count), (override));
 	MOCK_METHOD(int, getPrice, (int code, time_t time), (override));
 };
 
@@ -64,25 +64,25 @@ TEST_F(StockBrockerTest, BuySomethingFail) {
 }
 
 TEST_F(StockBrockerTest, SellSomethingSuccess) {
-	EXPECT_CALL(mock, sell(1, 2, 100))
+	EXPECT_CALL(mock, sell(1, 200, 100))
 		.Times(1);
 	EXPECT_CALL(mock, getPrice(1, 0))
 		.WillRepeatedly(Return(2));
-	sbd.sell(1, 2, 100);
+	sbd.sell(1, 200, 100);
 }
 
 TEST_F(StockBrockerTest, SellSomethingPartial) {
-	EXPECT_CALL(mock, sell(1, 3, 50))
+	EXPECT_CALL(mock, sell(1, 200, 50))
 		.Times(1);
 	EXPECT_CALL(mock, getPrice(1, 0))
 		.WillRepeatedly(Return(3));
-	sbd.sell(1, 3, 50);
+	sbd.sell(1, 200, 50);
 }
 
 TEST_F(StockBrockerTest, SellSomethingFail) {
-	EXPECT_CALL(mock, buy(1, 2, 100))
+	EXPECT_CALL(mock, buy(1, 200, 100))
 		.Times(1);
 	EXPECT_CALL(mock, getPrice(1, 0))
 		.WillRepeatedly(Return(2));
-	EXPECT_THROW(sbd.sell(1, 2, 100), std::exception);
+	EXPECT_THROW(sbd.sell(1, 200, 100), std::exception);
 }
