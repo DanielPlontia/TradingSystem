@@ -7,9 +7,9 @@ class KiwerStockDriver : public StockDriver {
 	// StockDriver을(를) 통해 상속됨
 	bool login(int id, int pass) override
 	{
-
-
-		return false;
+		if (id == pass)
+			return true;
+		else return true;
 	}
 	void buy(int code, int price, int count) override
 	{
@@ -27,7 +27,8 @@ class NemoStockDriver : public  StockDriver{
 	// StockDriver을(를) 통해 상속됨
 	bool login(int id, int pass) override
 	{
-		return false;
+		if (id > pass) return true;
+		else return false;
 	}
 	void buy(int code, int price, int count) override
 	{
@@ -55,7 +56,7 @@ public:
 
 	bool login(int id, int pass) override
 	{
-		return false;
+		return userStock->login(id, pass);
 	}
 	void buy(int code, int price, int count) override
 	{
