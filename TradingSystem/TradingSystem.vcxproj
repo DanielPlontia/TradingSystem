@@ -132,6 +132,9 @@
     <ClCompile Include="NemoAPI.cpp" />
     <ClCompile Include="StockBrockerDriver.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StockDriver.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
