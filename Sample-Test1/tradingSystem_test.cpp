@@ -47,6 +47,14 @@ TEST_F(StockBrockerTest, BuySomethingSuccess) {
 	sbd.buy(1, 200, 100);
 }
 
+TEST_F(StockBrockerTest, BuySomethingPartial) {
+	EXPECT_CALL(mock, buy(1, 200, 50))
+		.Times(1);
+	EXPECT_CALL(mock, getPrice(1, 0))
+		.WillRepeatedly(Return(3));
+	sbd.buy(1, 200, 50);
+}
+
 TEST_F(StockBrockerTest, BuySomethingFail) {
 	EXPECT_CALL(mock, buy(1, 200, 100))
 		.Times(1);
@@ -62,6 +70,15 @@ TEST_F(StockBrockerTest, SellSomethingSuccess) {
 		.WillRepeatedly(Return(2));
 	sbd.sell(1, 200, 100);
 }
+
+TEST_F(StockBrockerTest, SellSomethingPartial) {
+	EXPECT_CALL(mock, sell(1, 200, 50))
+		.Times(1);
+	EXPECT_CALL(mock, getPrice(1, 0))
+		.WillRepeatedly(Return(3));
+	sbd.sell(1, 200, 50);
+}
+
 TEST_F(StockBrockerTest, SellSomethingFail) {
 	EXPECT_CALL(mock, buy(1, 200, 100))
 		.Times(1);
