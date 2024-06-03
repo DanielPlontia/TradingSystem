@@ -51,7 +51,6 @@ public:
 	{
 		if (stock == "Kiwer") userStock = new KiwerStockDriver();
 		if (stock == "Nemo") userStock = new NemoStockDriver();
-		else userStock = nullptr;
 	}
 
 	bool login(int id, int pass) override
